@@ -1,4 +1,10 @@
+from datetime import datetime
+
+import pytz
+from django.conf import settings
+from django.contrib.auth import login
 from django.contrib.auth.views import LoginView
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView
 
@@ -34,4 +40,22 @@ class VerifySuccessView(TemplateView):
 
 
 def verify_email(request, token):
-    pass
+    current_user = User.objects.filter(verify_token=token).first()
+    if current_user:
+        now = datetime.now(pytz.timezone(settings.TIME_ZONE))
+        if now > current_user.verify_token_expired:
+            # TODO: сделать воркер на зачистку тех, кто пробаранил 3 дня
+            current_user.delete()
+            return render(request, 'users/verify_token_expired.html')
+
+        current_user.is_active = True
+        current_user.verify_token = None
+        current_user.verify_token_expired = None
+        current_user.save()
+        # TODO: редирект на логин
+        # login(request, current_user)
+        # return render(request, 'users/verify_token_success.html')
+        # TODO: потом авторизовать и кинуть на главную
+        return redirect('users:login')
+
+    return render(request, 'users/verify_failed.html')

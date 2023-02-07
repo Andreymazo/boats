@@ -5,7 +5,8 @@ from base.models import NULLABLE
 
 
 class User(AbstractUser):
-    verify_token = models.CharField(max_length=35, verbose_name='Токен верификации')
+    verify_token = models.CharField(max_length=35, verbose_name='Токен верификации',
+                                    **NULLABLE)
     verify_token_expired = models.DateTimeField(**NULLABLE,
                                                 verbose_name='Дата истечения токена')
 
