@@ -102,7 +102,7 @@
                 <a class="me-3 py-2 text-dark text-decoration-none" href="#">Блог</a>
                 {% if user.is_authenticated %}
                     <a class="me-3 py-2 text-dark text-decoration-none btn btn-outline-primary"
-                       href="{% url 'users:login' %}">Профиль</a>
+                       href="{% url 'users:profile' %}">Профиль</a>
                     <a class="me-3 py-2 text-dark text-decoration-none btn btn-outline-warning"
                        href="{% url 'users:logout' %}">Выход</a>
                 {% else %}

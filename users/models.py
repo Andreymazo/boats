@@ -9,7 +9,7 @@ class User(AbstractUser):
                                     **NULLABLE)
     verify_token_expired = models.DateTimeField(**NULLABLE,
                                                 verbose_name='Дата истечения токена')
-
+    new_password = models.CharField(verbose_name="новый пароль", max_length=128)
     username = None
     email = models.EmailField(
         verbose_name='Почта',

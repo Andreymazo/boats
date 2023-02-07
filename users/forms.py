@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UsernameField
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UsernameField, PasswordResetForm
 
 from base.forms import StyleFormMixin
 from users.models import User
@@ -15,3 +15,6 @@ class SignupForm(StyleFormMixin, UserCreationForm):
         fields = ("email",)
         field_classes = {"username": UsernameField}
 
+
+class CustomPasswordResetForm(StyleFormMixin, PasswordResetForm):
+    pass
