@@ -99,7 +99,7 @@
 
             <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
                 <a class="me-3 py-2 text-dark text-decoration-none" href="#">Каталог</a>
-                <a class="me-3 py-2 text-dark text-decoration-none" href="#">Блог</a>
+                <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'blog:list' %}">Блог</a>
                 {% if user.is_authenticated %}
                     <a class="me-3 py-2 text-dark text-decoration-none btn btn-outline-primary"
                        href="{% url 'users:profile' %}">Профиль</a>
@@ -113,55 +113,13 @@
         </div>
 
         <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-            <h1 class="display-4 fw-normal">Лучшие лодки недели</h1>
+            <h1 class="display-4 fw-normal">{{ title }}</h1>
         </div>
     </header>
 
     <main>
-        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-            <div class="col">
-                <div class="card mb-4 rounded-3 shadow-sm">
-                    <div class="card-header py-3">
-                        <h4 class="my-0 fw-normal">Free</h4>
-                    </div>
-                    <div class="card-body">
-                        <h1 class="card-title pricing-card-title">$0<small class="text-muted fw-light">/mo</small></h1>
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li>10 users included</li>
-                            <li>2 GB of storage</li>
-                            <li>Email support</li>
-                            <li>Help center access</li>
-                        </ul>
-                        <button type="button" class="w-100 btn btn-lg btn-outline-primary">Sign up for free</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <h2 class="display-6 text-center mb-4">Последние статьи</h2>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                    <div class="col p-4 d-flex flex-column position-static">
-                        <strong class="d-inline-block mb-2 text-primary">World</strong>
-                        <h3 class="mb-0">Featured post</h3>
-                        <div class="mb-1 text-muted">Nov 12</div>
-                        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural
-                            lead-in to
-                            additional content.</p>
-                        <a href="#" class="stretched-link">Continue reading</a>
-                    </div>
-                    <div class="col-auto d-none d-lg-block">
-                        <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"
-                             role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
-                             focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"></rect>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% block content %}
+        {% endblock %}
     </main>
 
     <footer class="pt-4 my-md-5 pt-md-5 border-top">

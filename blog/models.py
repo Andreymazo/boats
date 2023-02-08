@@ -17,3 +17,10 @@ class Article(models.Model):
     class Meta:
         verbose_name = 'статья'
         verbose_name_plural = 'статьи'
+        ordering = ('created_at',)
+        permissions = [
+            (
+                "set_publish",
+                "Can publish article"
+            )
+        ]
