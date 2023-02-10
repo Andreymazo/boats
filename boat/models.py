@@ -3,6 +3,7 @@ from django.db import models
 
 
 class Boat(models.Model):
+    # TODO: отзывы
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     model = models.CharField(max_length=100, verbose_name='Модель лодки')
@@ -47,3 +48,9 @@ class OldOwner(models.Model):
     class Meta:
         verbose_name = 'старый дряхлый владелец'
         verbose_name_plural = 'старые дряхлые владельцы'
+
+
+class Like(models.Model):
+    # TODO: MUST HAVE!!!
+    boat = models.ForeignKey('Boat', on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
