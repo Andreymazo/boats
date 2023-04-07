@@ -26,6 +26,7 @@ class SignupView(CreateView):
     success_url = reverse_lazy('users:register_success')
 
     def form_valid(self, form):
+        print('___________________________')
         if form.is_valid():
             self.object = form.save()
             set_verify_token_and_send_mail(self.object)
